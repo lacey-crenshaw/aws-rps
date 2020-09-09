@@ -15,13 +15,10 @@ exports.handler = (event, context) => {
             break;
         case "scissors":
             computerChoice = "rock"
-            break;
-        default
-            break;
     }
 
     const params = {
-        Body: `You chose ${userChoice}, but I chose ${myDict[userChoice]}. I win!`,
+        Body: `You chose ${userChoice}, but I chose ${computerChoice}. I win!`,
         Bucket: "mtech-rock-paper-scissors",
         Key: laceycrenshaw / results.txt
     }
