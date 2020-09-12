@@ -7,14 +7,14 @@ exports.handler = (event, context) => {
     let userChoice = event["choice"]
 
     switch (userChoice) {
+        case "scissors":
+            computerChoice = "rock"
+            break;
         case "rock":
             computerChoice = "paper"
             break;
         case "paper":
             computerChoice = "scissors"
-            break;
-        case "scissors":
-            computerChoice = "rock"
     }
 
     const params = {
