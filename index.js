@@ -1,12 +1,13 @@
-const AWS = require('aws-sdk');
-const s3 = new AWS.S3();
+let AWS = require('aws-sdk');
+let s3 = new AWS.S3();
 
 
 exports.handler = (event, context) => {
-    let computerChoice;
-    let userChoice = event["choice"]
+    let computerChoice,
+        userChoice;
+    let { choice } = event;
 
-    switch (userChoice) {
+    switch (choice) {
         case "scissors":
             computerChoice = "rock"
             break;
@@ -15,6 +16,9 @@ exports.handler = (event, context) => {
             break;
         case "paper":
             computerChoice = "rock"
+            break;
+        default:
+            context.fail("Unknown submission - Please try again.")
     }
 
     console.log(`You chose ${userChoice}, I chose ${computerChoice}. I win!`);
