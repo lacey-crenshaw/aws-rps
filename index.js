@@ -15,7 +15,7 @@ exports.handler = (event, context) => {
             computerChoice = "paper"
             break;
         case "paper":
-            computerChoice = "rock"
+            computerChoice = "scissors"
             break;
         default:
             context.fail("Unknown submission - Please try again.")
