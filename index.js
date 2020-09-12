@@ -3,7 +3,7 @@ const s3 = new AWS.S3();
 
 
 exports.handler = (event, context) => {
-    let computerChoice
+    let computerChoice;
     let userChoice = event["choice"]
 
     switch (userChoice) {
@@ -14,17 +14,23 @@ exports.handler = (event, context) => {
             computerChoice = "paper"
             break;
         case "paper":
-            computerChoice = "scissors"
+            computerChoice = "rock"
     }
 
-    const params = {
-        Body: `You chose ${userChoice}, but I chose ${computerChoice}. I win!`,
-        Bucket: "mtech-rock-paper-scissors",
-        Key: laceycrenshaw / results.txt
-    }
+    console.log(`You chose ${userChoice}, I chose ${computerChoice}. I win!`);
+    let resultFile = `You chose ${userChoice}, I chose ${computerChoice}. I win!`
+    s3.putObject({
+        Body: resultFile,
+        Bucket: 'laceycrenshaw',
+        Key: 'laceycrenshaw/result.txt'
+    }(err, data) => {
+        if(err) {
+            console.log('error')
+        } else {
+            console.log(`result.txt updated successfully`)
+        }
+    })
+}
 
-    s3.putObject(params, function (err, data) {
-        if (err) console.log(err, err.stack)
-    });
-};
+
 
