@@ -23,18 +23,14 @@ exports.handler = (event, context) => {
 
     console.log(`You chose ${userChoice}, I chose ${computerChoice}. I win!`);
     let resultFile = `You chose ${userChoice}, I chose ${computerChoice}. I win!`
-    s3.putObject({
-        Body: resultFile,
-        Bucket: 'laceycrenshaw',
-        Key: 'laceycrenshaw/result.txt'
-    }(err, data) => {
-        if(err) {
-            console.log('error')
+
+    s3.putObject({ Body: resultFile, Bucket: 'laceycrenshaw', Key: 'mtech-rock-paper-scissors/laceycrenshaw/results.txt' }, (err, data) => {
+        if (err) {
+            console.log('unable to update result.txt')
         } else {
-            console.log(`result.txt updated successfully`)
+            console.log("result.txt successfully updated")
         }
     })
 }
-
 
 
